@@ -1,0 +1,261 @@
+body {
+    background-image: url(/imgs/stars.gif);
+    background-color: #181823;
+}
+
+h1 {
+    color: #66BFBF;
+}
+
+h3 {
+    color:#66BFBF;
+}
+hr {
+    border-style: none;
+    border-top-style: dotted;
+    border-color: #537FE7;
+    border-width: 5px;
+    width: 10%;
+    opacity: 0.6;
+}
+
+#logos {
+    margin-left: 20%;
+    margin-right: 10%;
+}
+
+#kicklogo1 {
+    margin-left: 70%;
+    width: 50%;
+}
+
+#tanalogo1 {
+    margin-left: 20%;
+    width: 20%;
+}
+
+#directories {
+    text-align: center;
+    width: 100%;
+    font-family: monospace;
+    font-size:x-large;
+}
+
+#CLIPS {
+    border:#537FE7;
+    border-style: solid;
+}
+
+#ARTWORK {
+    border: #537FE7;
+    border-style: solid;
+}
+
+#KICK-RESOURCES {
+    border: #537FE7;
+    border-style: solid;
+}
+
+#TWITCH {
+    border: #537FE7;
+    border-style: solid;
+}
+
+#KICKSTERS {
+    border: #537FE7;
+    border-style: solid;
+}
+
+#misc {
+    border: #537FE7;
+    border-style: solid;
+}
+
+a:link {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: gray;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+#artp {
+    color: white;
+    text-align: center;
+    font-family: monospace;
+    font-size: large;
+}
+
+#animatedlogo {
+    width: 10%;
+    margin-left: 45%;
+}
+
+#twitch-embed {
+    float: left;
+    margin-right: 40px;
+}
+
+#twitch-embed1 {
+    float: left;
+}
+
+#names {
+    color: white;
+    text-indent: 9.5%;
+    font-family: monospace;
+    font-size: xx-large;
+}
+
+#paltext {
+    text-indent:24%;
+}
+
+#gridbanner {
+    margin-right: 13%;
+}
+
+#atombanner {
+    width: 60%;
+    opacity: 0.3;
+    margin-left: 20.5%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#t-friendlinks {
+    text-align: center;
+}
+
+#twitch-embed2 {
+    float: left;
+    margin-left: 40px;
+}
+
+#butchtxt {
+    text-indent: 21%;
+}
+
+#featured-stream {
+    display: block;
+    box-sizing: border-box;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 25px;
+    width: 40%;
+    
+}
+
+#thanks {
+    color: white;
+    font-family: monospace;
+    font-size: xx-large;
+}
+
+#butchbanner {
+    margin-left: 45px;
+}
+
+#artnames {
+    font-family: monospace;
+    color: white;
+    font-size: x-large;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#way2art {
+    width: 40%;
+    margin-left: 31%;
+}
+
+#profitztv {
+    width: 200px;
+    height: 200px;
+    margin-right: 70%;
+}
+
+#kick-test {
+    width: 25%;
+}
+
+#featured {
+    text-align: center;
+    font-family: monospace;
+    font-size: xx-large;
+    color:white;
+}
+
+.textcontainer .featured .pfpimage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: 100%;
+    left: 48.64%;
+}
+
+.textcontainer {
+    position: relative;
+    left: calc(100vw -25px);
+}
+
+#username {
+    font-size: 50px;
+}
+
+  #user-content {
+    display: flex;
+    flex-direction: wrap;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .profile-container {
+    flex-basis: 23%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 350px;
+    margin: 5px -50px 10px 51.5px
+  }
+  
+  
+  .profile-container img {
+    width: 25%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 50%;
+  }
+  
+  
+  .profile-container video {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+  }
+    
+  
+  .row {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #atom {
+    width: 287px;
+    height: 360px;
+  }

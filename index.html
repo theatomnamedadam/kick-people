@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <!--SPECIAL THANKS TO WATERFIELDGAMING, ONEDEEPZAY, PRODIGALTECHIE, JURDTV, PREXX, BASIL, GENUINEALPINE, MASTERZZ-->
+    <head>
+        <meta charset="utf-8">
+
+        <title>TheAtomNamedAdam</title>
+
+        <link rel="stylesheet" href="css/styles.css">
+
+        <link href="css/video-js.css" rel="stylesheet">
+
+        <link rel="icon" href="imgs/favicon.png">
+    </head>
+
+    <body>
+    
+    <table id="logos">
+        <tr><td><a href="https://www.kick.com"><img id="kicklogo1" src="imgs/kicklogo.png" alt="fuck it broke"></a></td>
+            <td><a href="https://www.kick.com/TheAtomNamedAdam"><img id="tanalogo1" src="imgs/logo.png" alt="fuck it broke"></a></td>
+        </tr>
+    </table>  
+    
+    <table id="directories">
+        <tr>
+            <td id="CLIPS"><a href=""><b>CLIPS</b></a></td>
+            <td id="KICK-RESOURCES"><a href="kick-resources.html"><b>KICK RESOURCES</b></a></td>
+            <td id="ARTWORK"><a href="artwork.html"><b>ARTWORK</b></a></td>
+            <td id="KICKSTERS"><a href="kicksters.html"><b>KICKSTERS</b></a></td>
+            <td id="TWITCH"><a href="twitchfriends.html"><b>TWITCH FRIENDS</b></a></td>
+            <td id="misc"><a href=""><b>OTHER COOL STUFF</b></td></a>
+        </tr>
+    </table>
+    
+    <marquee id="thanks" direction="left"><b>THANKS FOR STOPPING BY!</b><i id="discord">  JOIN THE <a href="https://discord.gg/jASRZg68uD">DISCORD</a></i></marquee>
+
+    <div class="textcontainer">
+      <p id="featured" class="featured"><i>FEATURED STREAMER</i></p>
+    </div>
+
+    <hr style="width:0%">
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <div id="featured">
+      <video id="featured-stream" controls autoplay muted></video>
+      <div id="username"></div>  <!-- New div element to hold both the straam and the username -->
+    </div>
+    <script>
+      var kickArray = [
+        "Logi",
+        "Way2Gimped",
+        "toxicwocky",
+        "Kyle",
+        "ghxstmami",
+    "Yuppy",
+    "MrThrowback",
+    "Jessi",
+    "luljoey",
+    "slushhyy",
+    "AVxNation",
+    "ath3na",
+    "Lustren",
+    "creedknows",
+    "Sponge",
+    "waterfieldgaming",
+    "mikey",
+      ];
+    
+      function findUser() {
+        var randomKickster = kickArray[Math.floor(Math.random() * kickArray.length)];
+    
+        var url = "https://kick.com/api/v1/channels/" + randomKickster;
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            var playback_url = data.playback_url;
+            if (Hls.isSupported()) {
+              if (data.livestream) {
+                let islive = data.livestream.is_live
+                if (islive === true) {
+                  var video = document.getElementById('featured-stream');
+                  var hls = new Hls();
+                  hls.loadSource(playback_url);
+                  hls.attachMedia(video);
+                  hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play();
+                  });
+                  var pfpimage = document.createElement("img")
+                  pfpimage.classList.add("pfpimage")
+                  pfpimage.src = data.user.profile_pic
+                  pfpimage.addEventListener("click", function() {
+                    window.location.href = "https://kick.com/" + randomKickster
+                  })
+                // add the streamers pfp to the new section on the webpage
+                  document.getElementById("featured").appendChild(pfpimage)
+                // set the text to the username of the streamer
+                  document.getElementById("username").innerHTML = randomKickster;
+                } else {
+                  const selection = kickArray.indexOf(randomKickster)
+                  if (selection !== -1) {
+                    kickArray.splice(selection, 1)
+                    repeatuser()
+                  }
+                }
+                console.log(data.livestream.is_live)
+              } else {
+                console.log('user is not live')
+                const selection = kickArray.indexOf(randomKickster)
+                if (selection !== -1) {
+                  kickArray.splice(selection, 1)
+                  repeatuser()
+                }
+              }
+    
+            } else {
+              var video = document.getElementById('featured-stream');
+              video.src = playback_url;
+              video.addEventListener('canplay', function() {
+                video.play();
+              });
+            }
+          })
+          .catch(error => console.error(error));
+      }
+    
+      function repeatuser() {
+        findUser()
+      }
+    
+      findUser()
+    </script>
+
+
+
+
+    
+
+    <img id="atombanner" src="imgs/atom-banner.png">
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    </body>
+
+
+</html>
+

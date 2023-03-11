@@ -1,0 +1,42 @@
+<link href="https://vjs.zencdn.net/7.15.4/video-js.min.css" rel="stylesheet">
+<script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
+
+<style>
+    .vjs-loading-spinner:before {
+  border-top-color: rgb(25, 0, 255);
+  border-left-color: rgb(0, 26, 255);
+  background-image: url('./load.png');
+}
+
+.vjs-loading-spinner {
+  height: 40px;
+  width: 40px;
+}
+</style>
+
+<video id="my-video" class="video-js" controls preload="auto" width="640" height="264" poster="https://i.ibb.co/YjSKG83/da.png">
+    <source src="https://fa723fc1b171.us-west-2.playback.live-video.net/api/video/v1/us-west-2.196233775518.channel.qFWhJI1dpEhZ.m3u8" type="application/x-mpegURL">
+  </video>  
+
+<style>
+    #my-video {
+        width: 1200px;
+        height: 800px;
+    }
+</style>
+
+<script>
+    var player = videojs('my-video');
+
+    player.ready(function() {
+        player.play();
+    });
+
+    player.on('waiting', function() {
+        document.getElementById('loading-message').style.display = 'block';
+    });
+
+    player.on('playing', function() {
+        document.getElementById('loading-message').style.display = 'none';
+    });
+</script>

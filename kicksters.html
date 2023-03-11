@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Kicksters!</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  </head>
+  <body>
+    <div id="user-content"></div>
+    <script>
+      const streams = [
+        { username: 'theatomnamedadam', videoId: 'atom' },
+        { username: 'Kyle', videoId: 'atom' },
+        { username: 'onedeepzay', videoId: 'atom' },
+        { username: 'Way2Gimped', videoId: 'atom' },
+        { username: 'stardust', videoId: 'atom' },
+        { username: 'ProfitzTV', videoId: 'atom' },
+        { username: 'Steveoo', videoId: 'atom' },
+        { username: 'peek', videoId: 'atom' },
+        { username: 'Logi', videoId: 'atom' },
+        { username: 'LegacyMike', videoId: 'atom'},
+        {username: 'MrThrowback', videoId: 'atom'},
+        {username: 'toxicwocky', videoId: 'atom'}
+      ];
+
+      const userContentDiv = document.getElementById('user-content');
+      let row = document.createElement('div');
+      row.classList.add('row');
+      userContentDiv.appendChild(row);
+
+      function addStream(stream) {
+        const profileContainer = document.createElement('div');
+        profileContainer.classList.add('profile-container');
+
+        let added = false;
+        for (let i = 0; i < row.children.length; i++) {
+          const child = row.children[i];
+          if (!child.hasChildNodes()) {
+            child.appendChild(profileContainer);
+            added = true;
+            break;
+          }
+        }
+
+        if (!added) {
+          row = document.createElement('div');
+          row.classList.add('row');
+          userContentDiv.appendChild(row);
+          row.appendChild(profileContainer);
+        }
+
+        const userProfileDiv = document.createElement('div');
+        userProfileDiv.id = `${stream.videoId}-profile`;
+        profileContainer.appendChild(userProfileDiv);
+
+        const video = document.createElement('video');
+        video.id = stream.videoId;
+        video.controls = true;
+        video.autoplay = true;
+        video.muted = true;
+        profileContainer.appendChild(video);
+
+        const pfpusername = stream.username;
+        const url = `https://kick.com/api/v1/channels/${pfpusername}`;
+
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            const profilePicUrl = data.user.profile_pic;
+
+            const img = document.createElement('img');
+            img.src = profilePicUrl;
+            img.alt = `${pfpusername}'s Profile Picture`;
+            userProfileDiv.appendChild(img);
+
+            if (data.livestream && data.livestream.is_live) {
+              const playback_url = data.playback_url;
+              if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(playback_url);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                  video.play();
+                });
+              } else {
+                video.src = playback_url;
+                video.addEventListener('canplay', function () {
+                  video.play();
+                });
+              }
+            } else {
+              profileContainer.removeChild(video);
+              userProfileDiv.removeChild(img)
+            }
+          })
+          .catch(error => console.error(error));
+      }
+
+      streams.forEach((stream, index) => {
+        if (index % 4 === 0 && index !== 0) {
+          row = document.createElement('div');
+          row.classList.add('row');
+          userContentDiv.appendChild(row);
+        }
+
+        addStream(stream);
+      });
+    </script>
+  </body>
+</html>
